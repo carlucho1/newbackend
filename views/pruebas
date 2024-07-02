@@ -1,7 +1,0 @@
-{{#each data}}
-<div class="caja">
-  <img src="{{ urlImage }}" alt="" />
-  <p>{{ descripcion }}</p>
-  <h2>{{ precio }}</h2>
-</div>
-{{/each}}
