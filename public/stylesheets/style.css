@@ -267,7 +267,7 @@
   padding: 0 3%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 }
 
@@ -283,6 +283,7 @@
 
 .tabla-titulo h2 {
   font-size: 28px;
+  font-weight: bold;
   color: rgb(0, 0, 0);
 }
 
@@ -292,7 +293,7 @@
   color: rgb(150, 83, 263);
   /* color: rgb(63, 63, 63); */
   text-align: justify;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
 }
 
 /* No hace falta darle clase a h2, ni h3 ni al párrafo, porque se aplica descendencia con respecto al elemento padre que es el div con clase tabla-titulo*/
@@ -303,8 +304,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50%;
-  margin: 30px 0;
+  height: auto;
+  /* margin: 30px 0; */
 }
 
 .tabla {
@@ -313,6 +314,7 @@
   border-collapse: collapse;
   width: 100%;
   height: 100%;
+  margin-bottom: 30px;
   /* se trata del 100% de su padre que es tabla-div */
 }
 

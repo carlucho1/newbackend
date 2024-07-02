@@ -45,7 +45,7 @@
         <a href="">Inicio</a>
         <a href="#nosotros">Quiénes somos</a>
         <a href="#0km">0 KM</a>
-        <a href="usados.html">Usados</a>
+        <a href="">Usados</a>
         <a href="#contacto">Contacto</a>
       </nav>
 
@@ -184,93 +184,19 @@
               </tr>
 
               <!-- Datos de la tabla -->
+              {{#each data1}}
+                 <tr class="fila-dato">
+                   <td class="columna">{{marca}}</td>
+                   <td class="columna">{{modelo}}</td>
+                   <td class="columna">{{año}}</td>
+                   <td class="columna">{{precio}}</td>
+                   <td class="columna">{{color}}</td>
+                 </tr>
+              {{/each}}
 
-              <tr class="fila-dato">
-                <td class="columna">FIAT</td>
-                <td class="columna">Cronos</td>
-                <td class="columna">0 KM</td>
-                <td class="columna">18.700.000</td>
-                <td class="columna">Azul</td>
-              </tr>
-
-              <tr class="fila-dato">
-                <td class="columna">Toyota</td>
-                <td class="columna">Corolla Cross SEG 1.8 Híbrida</td>
-                <td class="columna">0 KM</td>
-                <td class="columna">43.700.000</td>
-                <td class="columna">Roja</td>
-              </tr>
-              <tr class="fila-dato">
-                <td class="columna">Volkswagen</td>
-                <td class="columna">GOL</td>
-                <td class="columna">2014</td>
-                <td class="columna">7.500.000</td>
-                <td class="columna">Gris titanio</td>
-              </tr>
-              <tr class="fila-dato">
-                <td class="columna">Ford</td>
-                <td class="columna">Focus</td>
-                <td class="columna">2020</td>
-                <td class="columna">21.000.000</td>
-                <td class="columna">Blanco</td>
-              </tr>
-              <tr class="fila-dato">
-                <td class="columna">Renault</td>
-                <td class="columna">Clío</td>
-                <td class="columna">2018</td>
-                <td class="columna">8.900.000</td>
-                <td class="columna">Negro</td>
-              </tr>
-                 <tr class="fila-dato">
-                <td class="columna">Renault</td>
-                <td class="columna">Fuego Coupé</td>
-                <td class="columna">1989</td>
-                <td class="columna">9.900.000</td>
-                <td class="columna">Dorada</td>
-              </tr>
-                 <tr class="fila-dato">
-                <td class="columna">Fiat</td>
-                <td class="columna">Gran Siena con gas</td>
-                <td class="columna">2012</td>
-                <td class="columna">10.900.000</td>
-                <td class="columna">Negro</td>
-              </tr>
-                 <tr class="fila-dato">
-                <td class="columna">Ford</td>
-                <td class="columna">Territory</td>
-                <td class="columna">2024</td>
-                <td class="columna">49.800.000</td>
-                <td class="columna">Blanco</td>
-              </tr>
-                 <tr class="fila-dato">
-                <td class="columna">Ford</td>
-                <td class="columna">Escort Guía</td>
-                <td class="columna">1991</td>
-                <td class="columna">2.900.000</td>
-                <td class="columna">Blanco</td>
-              </tr>
-                 <tr class="fila-dato">
-                <td class="columna">Peugeot</td>
-                <td class="columna">208</td>
-                <td class="columna">0 KM</td>
-                <td class="columna">25.900.000</td>
-                <td class="columna">Azul</td>
-              </tr>
             </table>
+
           </div>
-
-          <!-- Nueva caja con un título  y otro div para las imágenes de las redes sociales -->
-
-          <!-- <div class="rs-div">
-            <h3>Seguinos en nuestras redes sociales</h3>
-
-            <div class="rs-img">
-              <img src="/img/instagram.png" alt="" />
-              <img src="/img/youtube.png" alt="" />
-              <img src="/img/facebook.png" alt="" />
-              <img src="/img/whatsapp.png" alt="" />
-            </div>
-          </div> -->
 
         </article>
 
@@ -320,81 +246,19 @@
 
       <main class="row text-center mb-5">
 
-        <!-- DIV 1 -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 align-content-end">
-          <div>
-            <img src="/images/auto_01.png" class="img-fluid" alt="..." />
+        <!-- DIV Dinámico. Llenado con imágenes en sección 4 desde tabla autosimages-->
+        {{#each data2}}
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 align-content-end">
+            <div>
+              <img src="{{urlImage}}" class="img-fluid" alt="..." />
+            </div>
+            <p>
+              {{descripcion}}
+            </p>
+            <h2 class="fw-bold">{{precio}}</h2>
           </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
-            itaque labore eveniet culpa quia temporibus modi quas deserunt sunt
-            doloribus.
-          </p>
-          <h2 class="fw-bold">19000 U$S</h2>
-        </div>
+        {{/each}}
 
-        <!-- DIV 2 -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 align-content-end">
-          <div>
-            <img src="/images/auto_02.png" class="img-fluid" alt="..." />
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam qui omnis rerum vero temporibus, ducimus reprehenderit placeat? Adipisci, tempora expedita.
-          </p>
-          <h2 class="fw-bold">SIN STOCK !!</h2>
-        </div>
-
-        <!-- DIV 3 -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 align-content-end">
-          <div>
-            <img src="/images/auto_03.png" class="img-fluid" alt="..." />
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-            velit ad, commodi enim quo impedit dolorem nemo totam nulla
-            exercitationem.
-          </p>
-          <h2 class="fw-bold">26.800.000 $</h2>
-        </div>
-
-        <!-- DIV 4 -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 align-content-end">
-          <div>
-            <img src="/images/auto_04.png" class="img-fluid" alt="..." />
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-            velit ad, commodi enim quo impedit dolorem nemo totam nulla
-            exercitationem.
-          </p>
-          <h2 class="fw-bold">Reservado</h2>
-        </div>
-
-        <!-- DIV 5 -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-6 col-xl-2 align-content-end">
-          <div>
-            <img src="/images/auto_05.png" class="img-fluid" alt="..." />
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-            velit ad, commodi enim quo impedit dolorem nemo totam nulla
-            exercitationem.
-          </p>
-          <h2 class="fw-bold">26.800.000 $</h2>
-        </div>
-
-        <!-- DIV 6 -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-6 col-xl-2 align-content-end">
-          <div>
-            <img src="/images/auto_06.png" class="img-fluid" alt="..." />
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-            velit ad, commodi enim quo impedit dolorem nemo totam nulla
-            exercitationem.
-          </p>
-          <h2 class="fw-bold">Reservado</h2>
-        </div>
       </main>
 
         <nav class="navbar navbar-light bg-lightn mb-5">
