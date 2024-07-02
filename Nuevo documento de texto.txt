@@ -1,0 +1,9 @@
+ {{#each data}}
+              <tr class="fila-dato">
+                <td>{{marca}}</td>
+                <td>{{modelo}}</td>
+                <td>{{año}}</td>
+                <td>{{precio}}</td>
+                <td>{{color}}</td>
+              </tr>
+              {{/each}}

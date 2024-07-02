@@ -1,0 +1,82 @@
+<div class="container-fluid" style="background-color: coral; height: 100 vh">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <h1 class="text-center text-dark p-2 mt-4">Alta de Producto</h1>
+
+      <form action="/cursos/alta/" method="post" enctype="multipart/form-data">
+        <div class="form-group my-3">
+          <label for="formGroupExampleInput">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="formGroupExampleInput"
+            placeholder="Ingrese su nombre"
+            name="nombre"
+          />
+        </div>
+        <div class="form-group my-3">
+          <label for="formGroupExampleInput2">Descripcion</label>
+          <input
+            type="text"
+            class="form-control"
+            id="formGroupExampleInput2"
+            placeholder="Ingrese la descripcion del producto"
+            name="descripcion"
+          />
+        </div>
+        <div class="form-group my-3">
+          <label for="formGroupExampleInput3">Público</label>
+          <input
+            type="text"
+            class="form-control"
+            id="formGroupExampleInput3"
+            placeholder="Destinado a:"
+            name="destinado_a"
+          />
+        </div>
+
+        <div class="form-group my-3">
+          <label for="formGroupExampleInput4">Modalidad</label>
+          <input
+            type="text"
+            class="form-control"
+            id="formGroupExampleInput4"
+            placeholder="Ingrese la modalidad de cursada"
+            name="modalidad"
+          />
+        </div>
+
+        <div class="form-group my-3">
+          <label for="exampleFormControlFile1">Imagen</label>
+          <input
+            type="file"
+            class="form-control"
+            id="exampleFormControlFile1"
+            name="imagen"
+          />
+        </div>
+        <div class="form-group my-3">
+          <label for="formGroupExampleInput5">Duración</label>
+          <input
+            type="text"
+            class="form-control"
+            id="formGroupExampleInput5"
+            placeholder="Ingrese dia y horario de cursada"
+            name="duracion"
+          />
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto"><button
+            type="submit"
+            class="btn btn-secondary btn-block mt-5"
+          >Agregar</button>
+          <a
+            href="/cursos/listado"
+            class="btn btn-secondary btn-block mt-4"
+          >Retornar</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
