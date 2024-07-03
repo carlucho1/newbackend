@@ -9,8 +9,6 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var autosRouter = require('./routes/autos');
-var listautosRouter = require("./routes/listautos");
-var listimagesRouter = require("./routes/listimages");
 var subirautosRouter = require("./routes/subirautos");
 
 // instances
@@ -31,8 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/autos', autosRouter);
-app.use('/listautos', listautosRouter);
-app.use('/listimages', listimagesRouter);
 app.use('/subirautos', subirautosRouter);
 
 // catch 404 and forward to error handler

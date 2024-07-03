@@ -2,9 +2,29 @@ var express = require("express");
 var router = express.Router();
 var db = require("../bin/db");
 
-/* GET home page. */
+/* GET tablaautos -- Obtengo tablaautos en formato JSON en el Front End */
+router.get("/tablaautos", function (req, res, next) {
+    let query = "select * from tablaautos";
+    db.query(query, function (error, results, fields) {
+        if (error) throw error;
+        res.json({data: results});
+        console.log(results);
+    });
+});
+
+/* GET tablaimages -- Obtengo tablaimages en formato JSON en el Front End */
+router.get("/tablaimages", function (req, res, next) {
+  let query = "select * from autosimages";
+  db.query(query, function (error, results, fields) {
+    if (error) throw error;
+    res.json({ data: results });
+    console.log(results);
+  });
+});
+
+/* GET home page -- Renderizo la tabla de la sección 3 y las fotos de la sección 4 */
 router.get("/", function (req, res, next) {
-  // let query1 = "SELECT * FROM tablaautos"; -- Esto estaba mal porque me traía todo y desbordaba la tabla ---
+  // let query1 = "SELECT * FROM tablaautos"; -- Esto estaba mal porque me traía todo y desbordaba la tabla, lo solucioné poniendo un límite de traer sólo 10 filas (ver query1) ---
 
   let query1 = "SELECT * FROM tablaautos ORDER BY id DESC LIMIT 10";
   let query2 = "SELECT * FROM autosimages";
