@@ -52,6 +52,45 @@ router.post("/tablaautos", function (req, res, next) {
   });
 });
 
+// Ruta para mostrar el formulario de actualización
+router.get('/edit/:id', (req, res) => {
+  const id = req.params.id;
+  const query = 'SELECT * FROM tablaautos WHERE id = ?';
 
+  db.query(query, [id], (err, results) => {
+    if (err) throw err;
+    res.render('update', { auto: results[0] });
+  });
+});
 
+// Ruta para manejar la solicitud PUT
+// router.put('/edit/:id', (req, res) => {
+//   const id = req.params.id;
+//   const { marca, modelo, año, precio, color } = req.body;
+//   const query = 'UPDATE tablaautos SET marca = ?, modelo = ?, año = ?, precio = ?, color = ? WHERE id = ?';
+//   const values = [marca, modelo, año, precio, color, id];
+
+//   db.query(query, values, (err, results) => {
+//     if (err) throw err;
+//     // res.redirect('/');
+//     res.send("Auto actualizado");
+//   });
+// });
+
+// Ruta para manejar la solicitud PUT y actualizar el auto
+router.put('/autos/:id', (req, res) => {
+  const id = req.params.id;
+  const { marca, modelo, año, precio, color } = req.body;
+
+  const query = `
+    UPDATE tablaautos
+    SET marca = ?, modelo = ?, año = ?, precio = ?, color = ?
+    WHERE id = ?;
+  `;
+
+  db.query(query, [marca, modelo, año, precio, color, id], (err, result) => {
+    if (err) throw err;
+    res.send(`Auto con ID ${id} actualizado`);
+  });
+});
 module.exports = router;

@@ -1,0 +1,22 @@
+<body>
+  <h1>Editar Auto</h1>
+  <form action="/edit/{{auto.id}}" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <label for="marca">Marca:</label>
+    <input type="text" name="marca" id="marca" value="{{auto.marca}}" required>
+    <br>
+    <label for="modelo">Modelo:</label>
+    <input type="text" name="modelo" id="modelo" value="{{auto.modelo}}" required>
+    <br>
+    <label for="año">Año:</label>
+    <input type="number" name="año" id="año" value="{{auto.año}}" required>
+    <br>
+    <label for="precio">Precio:</label>
+    <input type="number" name="precio" id="precio" value="{{auto.precio}}" required>
+    <br>
+    <label for="color">Color:</label>
+    <input type="text" name="color" id="color" value="{{auto.color}}" required>
+    <br>
+    <button type="submit">Actualizar</button>
+  </form>
+</body>

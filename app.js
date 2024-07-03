@@ -4,6 +4,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// Para manejar los métodos PUT y DELETE con handlebars
+const methodOverride = require("method-override");
 
 // requires from routes
 var indexRouter = require('./routes/index');
@@ -21,9 +23,12 @@ app.set('view engine', 'hbs');
 // midlewares
 app.use(logger('dev'));
 app.use(express.json());
+// Configurar Body Parser para manejar solicitudes POST
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// Middleware para sobrescribir el método HTTP
+app.use(methodOverride('_method'));
 
 // endpoints
 app.use('/', indexRouter);
