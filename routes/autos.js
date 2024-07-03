@@ -40,4 +40,18 @@ router.get("/", function (req, res, next) {
   });
 });
 
+router.post("/tablaautos", function (req, res, next) {
+ 
+  let query = 'insert into tablaautos (marca, modelo, año, precio, color) values("' + req.body.marca + '","' + req.body.modelo + '",' + req.body.año + ',' + req.body.precio + ',"' + req.body.color + '")';
+
+  db.query(query, function (error, results, fields) {
+    if (error) throw error;
+    res.json({ data: results });
+    console.log(req.body);
+    console.log(results);
+  });
+});
+
+
+
 module.exports = router;
