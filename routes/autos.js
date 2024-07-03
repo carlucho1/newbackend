@@ -1,6 +1,11 @@
 var express = require("express");
 var router = express.Router();
+
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
 var db = require("../bin/db");
+const fs = require("fs");
 
 /* GET tablaautos -- Obtengo tablaautos en formato JSON en el Front End */
 router.get("/tablaautos", function (req, res, next) {
@@ -40,7 +45,8 @@ router.get("/", function (req, res, next) {
   });
 });
 
-router.post("/tablaautos", function (req, res, next) {
+//Ruta para insertar un registro en la tabla tablaautos
+router.post("/", function (req, res, next) {
  
   let query = 'insert into tablaautos (marca, modelo, año, precio, color) values("' + req.body.marca + '","' + req.body.modelo + '",' + req.body.año + ',' + req.body.precio + ',"' + req.body.color + '")';
 
@@ -51,6 +57,57 @@ router.post("/tablaautos", function (req, res, next) {
     console.log(results);
   });
 });
+
+/* Dashboard de Productos */
+router.get('/listado/', function(req, res, next) {
+
+  // En el objeto query viene lo que se pasa por GET en línea de comandos
+  if(req.query.id){
+      query = 'select * from autosimages where id = ' +  req.query.id
+  } else {
+    query = 'select * from autosimages' 
+  }
+
+  db.query(query, function (error, results, fields) {
+
+      if (error) throw error;
+      // res.json({data: results})
+      res.render('dashboard', {data:results});
+    });
+
+});
+
+router.get("/alta", function (req, res, next) {
+  res.render("alta");
+});
+
+// Ruta con el alta de producto
+router.post("/alta/", upload.single("urlImage"), async function (req, res, next) {
+  // Concatenando cadenas con signo +
+
+  let sentencia =
+    'insert into autosimages (urlImage, descripcion, precio) values("'+'/images/'+
+    req.file.originalname +
+    '","' +
+    req.body.descripcion +
+    '","' +
+    req.body.precio +
+    '")';
+
+  // Usando template string
+
+  // `insert into productos(nombre, descripcion,  imagen) values('${req.body.nombre}','${req.body.descripcion}','/images/${req.file.originalname}')`
+
+  let results = await db.query(sentencia);
+
+  fs.createReadStream("./uploads/" + req.file.filename).pipe(
+    fs.createWriteStream("./public/images/" + req.file.originalname),
+    function (error) {}
+  );
+
+  res.render("finalizado", { mensaje: "Producto Ingresado Exitosamente" });
+});
+
 
 // Ruta para mostrar el formulario de actualización
 router.get('/edit/:id', (req, res) => {
@@ -63,34 +120,5 @@ router.get('/edit/:id', (req, res) => {
   });
 });
 
-// Ruta para manejar la solicitud PUT
-// router.put('/edit/:id', (req, res) => {
-//   const id = req.params.id;
-//   const { marca, modelo, año, precio, color } = req.body;
-//   const query = 'UPDATE tablaautos SET marca = ?, modelo = ?, año = ?, precio = ?, color = ? WHERE id = ?';
-//   const values = [marca, modelo, año, precio, color, id];
 
-//   db.query(query, values, (err, results) => {
-//     if (err) throw err;
-//     // res.redirect('/');
-//     res.send("Auto actualizado");
-//   });
-// });
-
-// Ruta para manejar la solicitud PUT y actualizar el auto
-router.put('/autos/:id', (req, res) => {
-  const id = req.params.id;
-  const { marca, modelo, año, precio, color } = req.body;
-
-  const query = `
-    UPDATE tablaautos
-    SET marca = ?, modelo = ?, año = ?, precio = ?, color = ?
-    WHERE id = ?;
-  `;
-
-  db.query(query, [marca, modelo, año, precio, color, id], (err, result) => {
-    if (err) throw err;
-    res.send(`Auto con ID ${id} actualizado`);
-  });
-});
 module.exports = router;
