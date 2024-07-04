@@ -140,7 +140,8 @@ router.post("/update/:id",upload.single("urlImage"), async function (req, res, n
     let query;
 
 if (req.file) {
-  query = `update autosimages set urlImage  = '/images/${req.file.originalname}, 
+  query = `update autosimages set urlImage  = '/images/${req.file.originalname}'
+  , 
   descripcion = '${req.body.descripcion}', precio = '${req.body.precio}' where id = ${req.params.id}`;
 
       fs.createReadStream("./uploads/" + req.file.filename).pipe(
