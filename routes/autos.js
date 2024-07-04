@@ -121,7 +121,7 @@ router.post(
   }
 );
 
-// Ruta para editar el producto
+// Ruta para editar el producto -- MUESTRA EL FORMULARIO DE EDICIÓN (se accede al apretar el botón EDITAR en el dashboard)
 router.get("/update/:id", function (req, res, next) {
   db.query(
     "select * from autosimages where id = " + req.params.id,
@@ -133,6 +133,7 @@ router.get("/update/:id", function (req, res, next) {
   );
 });
 
+// Ruta con el envío del formulario de actualización
 router.post("/update/:id",upload.single("urlImage"), async function (req, res, next) {
     // Concatenando cadenas con signo +
 
@@ -158,5 +159,31 @@ if (req.file) {
     });
   }
 );
+
+// Ruta para eliminar un producto -- Se muestra el formulario DELETE
+router.get("/delete/:id", function (req, res, next) {
+  db.query(
+    "select * from autosimages where id = " + req.params.id,
+    function (error, results, fields) {
+      if (error) throw error;
+      // res.json({data: results})
+      res.render("delete", { data: results });
+    }
+  );
+});
+
+// Ruta donde se recibe el id del producto eliminado
+router.post("/delete/:id", function (req, res, next) {
+  db.query(
+    "delete from autosimages where id = " + req.params.id,
+    function (error, results, fields) {
+      if (error) throw error;
+      // res.json({data: results})
+      res.render("finalizado", {
+        mensaje: "El producto fue eliminado exitosamente",
+      });
+    }
+  );
+});
 
 module.exports = router;
